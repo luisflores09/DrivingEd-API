@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using DrivingEd_BackEnd.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+var connectionString = builder.Configuration["DrivingEd-SqlDb"];
+
+builder.Services.AddDbContext<DrivingEdDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -17,6 +23,4 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Welcome to DrivingEd App");
 
-
 app.Run();
-
