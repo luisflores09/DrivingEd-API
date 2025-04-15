@@ -41,3 +41,50 @@ Content-Type: application/json
 # Test: Delete an admin
 DELETE {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
 Accept: application/json
+
+
+
+# <--------------------------------------------------------->
+
+
+
+### 
+# Test: Get all instructors
+GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor
+Accept: application/json
+
+### 
+# Test: Get instructor by ID
+GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Accept: application/json
+
+### 
+# Test: Create a new instructor
+POST {{DrivingEd_BackEnd_HostAddress}}/api/instructor
+Content-Type: application/json
+
+{
+    "name": "Jane Smith",
+    "email": "janesmith@example.com",
+    "password": "securepassword",
+    "expertise": "Driving Instructor"
+}
+
+### 
+# Test: Update an instructor
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Jane Updated",
+    "email": "janeupdated@example.com",
+    "password": "newsecurepassword",
+    "expertise": "Driving Instructor",
+    "availability": "Monday 10:00-12:00, Wednesday 14:00-16:00"
+}
+
+### 
+# Test: Delete an instructor
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Accept: application/json
