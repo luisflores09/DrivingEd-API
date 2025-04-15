@@ -1,6 +1,43 @@
 @DrivingEd_BackEnd_HostAddress = http://localhost:5256
 
-GET {{DrivingEd_BackEnd_HostAddress}}/
+###
+# Test: Get all admins
+GET {{DrivingEd_BackEnd_HostAddress}}/api/admin
 Accept: application/json
 
 ###
+# Test: Get admin by ID
+GET {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
+Accept: application/json
+
+###
+# Test: Create a new admin
+POST {{DrivingEd_BackEnd_HostAddress}}/api/admin
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword"
+}
+
+###
+# Test: Update an admin
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/admin/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "John Updated",
+    "email": "johnupdated@example.com",
+    "password": "newsecurepassword",
+    "privileges": [
+        "Admin",
+        "User"
+    ]
+}
+
+###
+# Test: Delete an admin
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
+Accept: application/json

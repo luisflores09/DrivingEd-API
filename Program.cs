@@ -8,6 +8,8 @@ var connectionString = builder.Configuration["DrivingEd-SqlDb"];
 builder.Services.AddDbContext<DrivingEdDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddControllers();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -22,5 +24,7 @@ app.UseHttpsRedirection();
 
 
 app.MapGet("/", () => "Welcome to DrivingEd App");
+
+app.MapControllers();
 
 app.Run();
