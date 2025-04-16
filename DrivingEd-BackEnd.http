@@ -1,6 +1,134 @@
 @DrivingEd_BackEnd_HostAddress = http://localhost:5256
 
-GET {{DrivingEd_BackEnd_HostAddress}}/
+###
+# Test: Get all admins
+GET {{DrivingEd_BackEnd_HostAddress}}/api/admin
 Accept: application/json
 
 ###
+# Test: Get admin by ID
+GET {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
+Accept: application/json
+
+###
+# Test: Create a new admin
+POST {{DrivingEd_BackEnd_HostAddress}}/api/admin
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword"
+}
+
+###
+# Test: Update an admin
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/admin/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "John Updated",
+    "email": "johnupdated@example.com",
+    "password": "newsecurepassword",
+    "privileges": [
+        "Admin",
+        "User"
+    ]
+}
+
+###
+# Test: Delete an admin
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
+Accept: application/json
+
+
+
+# <--------------------------------------------------------->
+
+
+
+### 
+# Test: Get all instructors
+GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor
+Accept: application/json
+
+### 
+# Test: Get instructor by ID
+GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Accept: application/json
+
+### 
+# Test: Create a new instructor
+POST {{DrivingEd_BackEnd_HostAddress}}/api/instructor
+Content-Type: application/json
+
+{
+    "name": "Jane Smith",
+    "email": "janesmith@example.com",
+    "password": "securepassword",
+    "expertise": "Driving Instructor"
+}
+
+### 
+# Test: Update an instructor
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Jane Updated",
+    "email": "janeupdated@example.com",
+    "password": "newsecurepassword",
+    "expertise": "Driving Instructor",
+    "availability": "Monday 10:00-12:00, Wednesday 14:00-16:00"
+}
+
+### 
+# Test: Delete an instructor
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
+Accept: application/json
+
+
+
+# <--------------------------------------------------------->
+
+
+
+### 
+# Test: Get all students
+GET {{DrivingEd_BackEnd_HostAddress}}/api/student
+Accept: application/json
+
+### 
+# Test: Get student by ID
+GET {{DrivingEd_BackEnd_HostAddress}}/api/student/1
+Accept: application/json
+
+### 
+# Test: Create a new student
+POST {{DrivingEd_BackEnd_HostAddress}}/api/student
+Content-Type: application/json
+
+{
+    "name": "Alice Johnson",
+    "email": "alicejohnson@example.com",
+    "password": "securepassword"
+}
+
+### 
+# Test: Update a student
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/student/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Alice Updated",
+    "email": "aliceupdated@example.com",
+    "password": "newsecurepassword"
+}
+
+### 
+# Test: Delete a student
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/student/1
+Accept: application/json

@@ -8,10 +8,7 @@ namespace DrivingEd_BackEnd.Data
 
     public class DrivingEdDbContext : DbContext
     {
-        public DrivingEdDbContext(DbContextOptions<DrivingEdDbContext> options) : base(options)
-        {
-        }
-
+        public DrivingEdDbContext(DbContextOptions<DrivingEdDbContext> options) : base(options) { }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Admin> Admins { get; set; }
