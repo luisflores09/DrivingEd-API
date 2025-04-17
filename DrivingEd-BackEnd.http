@@ -1,134 +1,94 @@
 @DrivingEd_BackEnd_HostAddress = http://localhost:5256
 
 ###
-# Test: Get all admins
-GET {{DrivingEd_BackEnd_HostAddress}}/api/admin
-Accept: application/json
+
+GET {{DrivingEd_BackEnd_HostAddress}}/api/User
 
 ###
-# Test: Get admin by ID
-GET {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
-Accept: application/json
+
+GET {{DrivingEd_BackEnd_HostAddress}}/api/User/1
 
 ###
-# Test: Create a new admin
-POST {{DrivingEd_BackEnd_HostAddress}}/api/admin
+
+GET {{DrivingEd_BackEnd_HostAddress}}/api/User/role/Instructor
+
+###
+POST {{DrivingEd_BackEnd_HostAddress}}/api/User
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "email": "johndoe@example.com",
-    "password": "securepassword"
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "SecurePassword123",
+  "phoneNumber": "123-456-7890",
+  "role": 1,
+  "privileges": null,
+  "expertise": "Defensive Driving",
+  "availability": "Weekdays 9 AM - 5 PM",
+  "licenseNumber": "DL123456",
+  "vehicleDetails": "Toyota Corolla 2022",
+  "profilePictureUrl": "https://example.com/profile.jpg",
+  "bio": "Experienced driving instructor with 10 years of experience.",
+  "address": "123 Main Street, Cityville",
+  "dateOfBirth": "1985-06-15",
+  "emergencyContactName": "Jane Doe",
+  "emergencyContactPhone": "987-654-3210",
+  "isEnrolled": null,
+  "enrollmentDate": null
 }
 
 ###
-# Test: Update an admin
-PUT {{DrivingEd_BackEnd_HostAddress}}/api/admin/2
+POST {{DrivingEd_BackEnd_HostAddress}}/api/User
 Content-Type: application/json
 
 {
-    "id": 2,
-    "name": "John Updated",
-    "email": "johnupdated@example.com",
-    "password": "newsecurepassword",
-    "privileges": [
-        "Admin",
-        "User"
-    ]
+  "name": "Jane Smith",
+  "email": "JaneSmith@example.com",
+  "password": "SecurePassword123",
+  "phoneNumber": "123-456-7890",
+  "role": 2,
+  "privileges": null,
+  "expertise": "Defensive Driving",
+  "availability": "Weekdays 9 AM - 5 PM",
+  "licenseNumber": "DL123456",
+  "vehicleDetails": "Toyota Corolla 2022",
+  "profilePictureUrl": "https://example.com/profile.jpg",
+  "bio": "Experienced driving instructor with 10 years of experience.",
+  "address": "123 Main Street, Cityville",
+  "dateOfBirth": "1985-06-15",
+  "emergencyContactName": "Jane Doe",
+  "emergencyContactPhone": "987-654-3210",
+  "isEnrolled": null,
+  "enrollmentDate": null
 }
 
 ###
-# Test: Delete an admin
-DELETE {{DrivingEd_BackEnd_HostAddress}}/api/admin/1
-Accept: application/json
 
-
-
-# <--------------------------------------------------------->
-
-
-
-### 
-# Test: Get all instructors
-GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor
-Accept: application/json
-
-### 
-# Test: Get instructor by ID
-GET {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
-Accept: application/json
-
-### 
-# Test: Create a new instructor
-POST {{DrivingEd_BackEnd_HostAddress}}/api/instructor
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/User/3
 Content-Type: application/json
 
 {
-    "name": "Jane Smith",
-    "email": "janesmith@example.com",
-    "password": "securepassword",
-    "expertise": "Driving Instructor"
+  "id": 3,
+  "name": "John Doe Updated",
+  "email": "johndoe_updated@example.com",
+  "password": "UpdatedPassword123",
+  "phoneNumber": "123-456-7890",
+  "role": 1,
+  "privileges": null,
+  "expertise": "Advanced Driving",
+  "availability": "Weekdays 10 AM - 6 PM",
+  "licenseNumber": "DL123456",
+  "vehicleDetails": "Honda Civic 2023",
+  "profilePictureUrl": "https://example.com/profile_updated.jpg",
+  "bio": "Updated bio for the instructor.",
+  "address": "456 Elm Street, Cityville",
+  "dateOfBirth": "1985-06-15",
+  "emergencyContactName": "Jane Doe",
+  "emergencyContactPhone": "987-654-3210",
+  "isEnrolled": null,
+  "enrollmentDate": null
 }
 
-### 
-# Test: Update an instructor
-PUT {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
-Content-Type: application/json
 
-{
-    "id": 1,
-    "name": "Jane Updated",
-    "email": "janeupdated@example.com",
-    "password": "newsecurepassword",
-    "expertise": "Driving Instructor",
-    "availability": "Monday 10:00-12:00, Wednesday 14:00-16:00"
-}
-
-### 
-# Test: Delete an instructor
-DELETE {{DrivingEd_BackEnd_HostAddress}}/api/instructor/1
-Accept: application/json
-
-
-
-# <--------------------------------------------------------->
-
-
-
-### 
-# Test: Get all students
-GET {{DrivingEd_BackEnd_HostAddress}}/api/student
-Accept: application/json
-
-### 
-# Test: Get student by ID
-GET {{DrivingEd_BackEnd_HostAddress}}/api/student/1
-Accept: application/json
-
-### 
-# Test: Create a new student
-POST {{DrivingEd_BackEnd_HostAddress}}/api/student
-Content-Type: application/json
-
-{
-    "name": "Alice Johnson",
-    "email": "alicejohnson@example.com",
-    "password": "securepassword"
-}
-
-### 
-# Test: Update a student
-PUT {{DrivingEd_BackEnd_HostAddress}}/api/student/2
-Content-Type: application/json
-
-{
-    "id": 2,
-    "name": "Alice Updated",
-    "email": "aliceupdated@example.com",
-    "password": "newsecurepassword"
-}
-
-### 
-# Test: Delete a student
-DELETE {{DrivingEd_BackEnd_HostAddress}}/api/student/1
-Accept: application/json
+###
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/User/2

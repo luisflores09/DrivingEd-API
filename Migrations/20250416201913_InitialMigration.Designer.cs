@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrivingEd_BackEnd.Migrations
 {
     [DbContext(typeof(DrivingEdDbContext))]
-    [Migration("20250415171101_UpdateIntructorModel")]
-    partial class UpdateIntructorModel
+    [Migration("20250416201913_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,38 +25,6 @@ namespace DrivingEd_BackEnd.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DrivingEd_BackEnd.Models.Admin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.PrimitiveCollection<string>("Privileges")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("DrivingEd_BackEnd.Models.Appointment", b =>
                 {
                     b.Property<int>("Id")
@@ -64,6 +32,9 @@ namespace DrivingEd_BackEnd.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -71,8 +42,25 @@ namespace DrivingEd_BackEnd.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("time");
+
                     b.Property<int>("InstructorId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -80,34 +68,70 @@ namespace DrivingEd_BackEnd.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("InstructorId");
 
+                    b.HasIndex("StudentId");
+
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("DrivingEd_BackEnd.Models.Instructor", b =>
+            modelBuilder.Entity("DrivingEd_BackEnd.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Availability")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmergencyContactName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmergencyContactPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EnrollmentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Expertise")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsEnrolled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LicenseNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -118,55 +142,50 @@ namespace DrivingEd_BackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Instructors");
-                });
+                    b.PrimitiveCollection<string>("Privileges")
+                        .HasColumnType("nvarchar(max)");
 
-            modelBuilder.Entity("DrivingEd_BackEnd.Models.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.PrimitiveCollection<string>("BookedAppointments")
-                        .IsRequired()
+                    b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("VehicleDetails")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DrivingEd_BackEnd.Models.Appointment", b =>
                 {
-                    b.HasOne("DrivingEd_BackEnd.Models.Instructor", null)
-                        .WithMany("BookedAppointments")
+                    b.HasOne("DrivingEd_BackEnd.Models.User", "Instructor")
+                        .WithMany()
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("DrivingEd_BackEnd.Models.Instructor", b =>
-                {
-                    b.Navigation("BookedAppointments");
+                    b.HasOne("DrivingEd_BackEnd.Models.User", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+
+                    b.Navigation("Student");
                 });
 #pragma warning restore 612, 618
         }
