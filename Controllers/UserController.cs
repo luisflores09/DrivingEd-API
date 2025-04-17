@@ -15,7 +15,6 @@ public class UserController : ControllerBase
         _context = context;
     }
 
-    // GET: api/User
     [HttpGet]
     public IActionResult GetAllUsers()
     {
@@ -23,7 +22,6 @@ public class UserController : ControllerBase
         return Ok(users);
     }
 
-    // GET: api/User/{id}
     [HttpGet("{id}")]
     public IActionResult GetUserById(int id)
     {
@@ -35,7 +33,6 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
-    // POST: api/User
     [HttpPost]
     public IActionResult CreateUser([FromBody] User user)
     {
@@ -49,48 +46,25 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
     }
 
-    // PUT: api/User/{id}
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, [FromBody] User updatedUser)
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] User updatedUser)
     {
-        if (id != updatedUser.Id)
+        var existingUser = await _context.Users.FindAsync(id);
+        if (existingUser == null)
         {
-            return BadRequest("User ID mismatch.");
+            return NotFound($"User with ID {id} not found.");
         }
 
-        var user = _context.Users.Find(id);
-        if (user == null)
-        {
-            return NotFound();
-        }
+        // Update only the fields that are not null or empty
+        existingUser.FirstName = !string.IsNullOrWhiteSpace(updatedUser.FirstName) ? updatedUser.FirstName : existingUser.FirstName;
+        existingUser.LastName = !string.IsNullOrWhiteSpace(updatedUser.LastName) ? updatedUser.LastName : existingUser.LastName;
+        existingUser.Email = !string.IsNullOrWhiteSpace(updatedUser.Email) ? updatedUser.Email : existingUser.Email;
+        existingUser.Role = updatedUser.Role != 0 ? updatedUser.Role : existingUser.Role;
 
-        // Update user properties
-        user.UserName = updatedUser.UserName;
-        user.FirstName = updatedUser.FirstName;
-        user.LastName = updatedUser.LastName;
-        user.Email = updatedUser.Email;
-        user.Password = updatedUser.Password;
-        user.PhoneNumber = updatedUser.PhoneNumber;
-        user.Role = updatedUser.Role;
-        user.Privileges = updatedUser.Privileges;
-        user.Expertise = updatedUser.Expertise;
-        user.Availability = updatedUser.Availability;
-        user.LicenseNumber = updatedUser.LicenseNumber;
-        user.VehicleDetails = updatedUser.VehicleDetails;
-        user.ProfilePictureUrl = updatedUser.ProfilePictureUrl;
-        user.Bio = updatedUser.Bio;
-        user.Address = updatedUser.Address;
-        user.DateOfBirth = updatedUser.DateOfBirth;
-        user.EmergencyContactName = updatedUser.EmergencyContactName;
-        user.EmergencyContactPhone = updatedUser.EmergencyContactPhone;
-        user.IsEnrolled = updatedUser.IsEnrolled;
-        user.EnrollmentDate = updatedUser.EnrollmentDate;
-
-        _context.SaveChanges();
-        return NoContent();
+        await _context.SaveChangesAsync();
+        return Ok(existingUser);
     }
 
-    // DELETE: api/User/{id}
     [HttpDelete("{id}")]
     public IActionResult DeleteUser(int id)
     {
