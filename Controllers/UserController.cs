@@ -65,7 +65,9 @@ public class UserController : ControllerBase
         }
 
         // Update user properties
-        user.Name = updatedUser.Name;
+        user.UserName = updatedUser.UserName;
+        user.FirstName = updatedUser.FirstName;
+        user.LastName = updatedUser.LastName;
         user.Email = updatedUser.Email;
         user.Password = updatedUser.Password;
         user.PhoneNumber = updatedUser.PhoneNumber;

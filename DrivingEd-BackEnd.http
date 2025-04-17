@@ -38,6 +38,31 @@ Content-Type: application/json
 }
 
 ###
+POST {{DrivingEd_BackEnd_HostAddress}}/api/User
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "JaneSmith@example.com",
+  "password": "SecurePassword123",
+  "phoneNumber": "123-456-7890",
+  "role": 2,
+  "privileges": null,
+  "expertise": "Defensive Driving",
+  "availability": "Weekdays 9 AM - 5 PM",
+  "licenseNumber": "DL123456",
+  "vehicleDetails": "Toyota Corolla 2022",
+  "profilePictureUrl": "https://example.com/profile.jpg",
+  "bio": "Experienced driving instructor with 10 years of experience.",
+  "address": "123 Main Street, Cityville",
+  "dateOfBirth": "1985-06-15",
+  "emergencyContactName": "Jane Doe",
+  "emergencyContactPhone": "987-654-3210",
+  "isEnrolled": null,
+  "enrollmentDate": null
+}
+
+###
 
 PUT {{DrivingEd_BackEnd_HostAddress}}/api/User/3
 Content-Type: application/json
