@@ -13,7 +13,7 @@ public class DrivingEdDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
+        SeedUser.Seed(modelBuilder);
         // Configure Appointment foreign keys
         modelBuilder.Entity<Appointment>()
             .HasOne(a => a.Instructor)
