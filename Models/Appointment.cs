@@ -5,9 +5,9 @@ namespace DrivingEd_BackEnd.Models;
 public class Appointment : BaseEntity
 {
     public int InstructorId { get; set; }
-    public User Instructor { get; set; } = null!;
+    public User? Instructor { get; set; }
     public int StudentId { get; set; }
-    public User Student { get; set; } = null!;
+    public User? Student { get; set; }
     public DateTime DateTime { get; set; }
     public TimeSpan Duration { get; set; }
     public string Location { get; set; } = string.Empty;

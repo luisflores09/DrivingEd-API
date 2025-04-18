@@ -92,3 +92,49 @@ Content-Type: application/json
 
 ###
 DELETE {{DrivingEd_BackEnd_HostAddress}}/api/User/2
+
+
+
+# <------------------------------------------------------------->
+
+###
+GET {{DrivingEd_BackEnd_HostAddress}}/api/Appointment
+
+###
+
+GET {{DrivingEd_BackEnd_HostAddress}}/api/Appointment/1
+
+###
+
+POST {{DrivingEd_BackEnd_HostAddress}}/api/Appointment
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "instructorId": 2,
+  "dateTime": "2023-10-15T10:00:00",
+  "duration": "01:00:00",
+  "location": "123 Main Street, Cityville",
+  "status": 0,
+  "notes": "First driving lesson."
+}
+
+###
+
+PUT {{DrivingEd_BackEnd_HostAddress}}/api/Appointment/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "userId": 1,
+  "instructorId": 2,
+  "date": "2023-10-16",
+  "time": "11:00 AM",
+  "location": "456 Elm Street, Cityville",
+  "status": 2,
+  "notes": "Updated driving lesson details."
+}
+
+###
+
+DELETE {{DrivingEd_BackEnd_HostAddress}}/api/Appointment/5
