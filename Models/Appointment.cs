@@ -9,7 +9,7 @@ public class Appointment : BaseEntity
     public int StudentId { get; set; }
     public User? Student { get; set; }
     public DateTime DateTime { get; set; }
-    public TimeSpan Duration { get; set; }
+     public TimeSpan Time { get; set; }
     public string Location { get; set; } = string.Empty;
     public string Notes { get; set; } = string.Empty;
     public AppointmentStatus Status { get; set; }
