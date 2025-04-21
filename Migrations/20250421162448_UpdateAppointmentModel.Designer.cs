@@ -4,6 +4,7 @@ using DrivingEd_BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrivingEd_BackEnd.Migrations
 {
     [DbContext(typeof(DrivingEdDbContext))]
-    partial class DrivingEdDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250421162448_UpdateAppointmentModel")]
+    partial class UpdateAppointmentModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

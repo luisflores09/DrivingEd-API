@@ -4,6 +4,7 @@ using DrivingEd_BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrivingEd_BackEnd.Migrations
 {
     [DbContext(typeof(DrivingEdDbContext))]
-    partial class DrivingEdDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250418164651_MakeNavigationPropertiesNullable")]
+    partial class MakeNavigationPropertiesNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,6 +42,9 @@ namespace DrivingEd_BackEnd.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("time");
+
                     b.Property<int>("InstructorId")
                         .HasColumnType("int");
 
@@ -61,9 +67,6 @@ namespace DrivingEd_BackEnd.Migrations
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
-
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("time");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
