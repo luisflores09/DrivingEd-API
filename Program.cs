@@ -3,10 +3,10 @@ using DrivingEd_BackEnd.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration["DrivingEd-SqlDb"];
+// var connectionString = builder.Configuration["DrivingEd-SqlDb"];
 
 builder.Services.AddDbContext<DrivingEdDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DrivingEd-SqlDb")));
+    options.UseSqlServer(builder.Configuration["DrivingEd-SqlDb"]));
 
 builder.Services.AddControllers();
 
