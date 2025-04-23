@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using DrivingEd_BackEnd.Data;
-using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// var connectionString = builder.Configuration["DrivingEd-SqlDb"];
-
-builder.Services.AddDbContext<DrivingEdDbContext>(options =>
-    options.UseSqlServer(builder.Configuration["AZURE_SQL_CONNECTIONSTRING"]));
+var connectionString = builder.Configuration["DrivingEd-SqlDb"];
+builder.Services.AddSqlServer<DrivingEdDbContext>(connectionString, options =>
+    options.EnableRetryOnFailure());
+    
+// var connectionString = builder.Configuration["AZURE_SQL_CONNECTIONSTRING"];
+// builder.Services.AddDbContext<DrivingEdDbContext>(options =>
+//     options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
 
