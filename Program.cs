@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using DrivingEd_BackEnd.Data;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
