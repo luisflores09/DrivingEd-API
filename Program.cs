@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // var connectionString = builder.Configuration["DrivingEd-SqlDb"];
 
 builder.Services.AddDbContext<DrivingEdDbContext>(options =>
-    options.UseSqlServer(builder.Configuration["DrivingEd-SqlDb"]));
+    options.UseSqlServer(builder.Configuration["AZURE_SQL_CONNECTIONSTRING"]));
 
 builder.Services.AddControllers();
 
