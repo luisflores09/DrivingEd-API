@@ -3,7 +3,7 @@ using DrivingEd_BackEnd.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration["DrivingEd-SqlDb"];
+var connectionString = builder.Configuration.GetConnectionString("DrivingEd-SqlDb");
 builder.Services.AddSqlServer<DrivingEdDbContext>(connectionString, options =>
     options.EnableRetryOnFailure());
     
